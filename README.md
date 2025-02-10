@@ -41,9 +41,9 @@ By clicking the Import button, the extension lets you select a file (with a `.ai
 The selected file is read and parsed as JSON.
 Finally, a POST request is made to the API using the current user’s credentials (from the stored token and viewer ID), and the playlist is imported.
 
-## Setting a custom image on your playlist
+# Setting a custom image on your playlist
 
-  # If you want your playlist to have a custom image:
+  If you want your playlist to have a custom image:
 
   1. Export the playlist you wish to modify
   2. Open the playlist file with a text editor
