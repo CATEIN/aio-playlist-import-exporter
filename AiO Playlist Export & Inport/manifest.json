@@ -1,0 +1,25 @@
+{
+  "manifest_version": 3,
+  "name": "AiO Playlist Import/Export",
+  "description": "A web extension for importing and exporting AiO playlists.",
+  "version": "1.0",
+  "icons": {
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "permissions": [
+    "webRequest",
+    "storage",
+    "tabs"
+  ],
+  "host_permissions": [
+    "https://app.adventuresinodyssey.com/*",
+    "https://fotf.my.site.com/*"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_popup": "popup.html"
+  }
+}
