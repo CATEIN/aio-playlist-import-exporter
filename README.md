@@ -19,7 +19,7 @@ A Chrome web extension for [Adventures in Odyssey](https://app.adventuresinodyss
 - **Import:**  
 Imports playlists by selecting a file (`.aiopl`, `.json`, or `.txt`). The extension will remove any embedded viewer IDs so that the playlist is imported under the current account.
 
-## How it works:
+# How it works:
 
 A background script monitors outgoing requests on the main frame (i.e., the full page load) of the Adventures in Odyssey website. It captures the API token and viewer ID from the request headers (specifically the `Authorization` and `x-viewer-id` headers) and stores them in local storage. *The token and viewer-id are not shared or sent anywhere other than https://app.adventuresinodyssey.com/ and https://fotf.my.site.com/*
 
