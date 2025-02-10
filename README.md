@@ -12,9 +12,7 @@ A Chrome web extension for [Adventures in Odyssey](https://app.adventuresinodyss
   - Image for playlist (if given)
 
 - **Export KYDS Radio:**  
-  Generates and copies to the clipboard the episode links from the playlist’s `contentList`, formatted for my KYDS Radio discord bot. Example:
-
-  https://app.adventuresinodyssey.com/content/a35Uh0000005suDIAQ https://app.adventuresinodyssey.com/content/a354W0000046UD9QAM
+  Generates and copies to the clipboard the episode links from the playlist’s `contentList`, formatted for my KYDS Radio discord bot.
 
   - **Import Playlists:**  
 Imports playlists by selecting a file (`.aiopl`, `.json`, or `.txt`). The extension will remove any embedded viewer IDs so that the playlist is imported under the current account.
@@ -35,3 +33,8 @@ The cleaned JSON is then converted to a file with the extension .aiopl (named af
 By clicking the Export KYDS Radio button, the extension again fetches the full playlist data. It then extracts each item’s id from the playlist’s contentList, prepends it with
 https://app.adventuresinodyssey.com/content/,
 and concatenates these URLs (separated by spaces).
+The resulting string of links is copied directly to your clipboard, ready to be sent to the bot.
+
+By clicking the Import button, the extension lets you select a file (with a .aiopl, .json, or .txt extension) via a file input.
+The selected file is read and parsed as JSON.
+Finally, a POST request is made to the API using the current user’s credentials (from the stored token and viewer ID), and the playlist is imported.
