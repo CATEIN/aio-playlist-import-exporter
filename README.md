@@ -8,7 +8,7 @@ A Chrome web extension for [Adventures in Odyssey](https://app.adventuresinodyss
 
 ![playlist image](https://github.com/CATEIN/aio-playlist-import-exporter/blob/main/icons/images/playlist.png)
 
-![extension image](https://github.com/CATEIN/aio-playlist-import-exporter/blob/main/icons/images/playlist.png)
+![extension image](https://github.com/CATEIN/aio-playlist-import-exporter/blob/main/icons/images/extension.png)
 
 ## Features
 
