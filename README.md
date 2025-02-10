@@ -37,6 +37,24 @@ https://app.adventuresinodyssey.com/content/,
 and concatenates these URLs (separated by spaces).
 The resulting string of links is copied directly to your clipboard, ready to be sent to the bot.
 
-By clicking the Import button, the extension lets you select a file (with a .aiopl, .json, or .txt extension) via a file input.
+By clicking the Import button, the extension lets you select a file (with a `.aiopl`, `.json`, or `.txt` extension) via a file input.
 The selected file is read and parsed as JSON.
 Finally, a POST request is made to the API using the current user’s credentials (from the stored token and viewer ID), and the playlist is imported.
+
+## Setting a custom image on your playlist
+
+  # If you want your playlist to have a custom image:
+
+  1. Export the playlist you wish to modify
+  2. Open the playlist file with a text editor
+  3. Locate `"imageURL": "",` and put your image URL here `"imageURL": "https://catein.xyz/images/whit.png",`
+     - Note that the image url needs certain headers, so most image urls will not work. Images from the club and https://catein.xyz/images/ have these headers
+  4. Save the file and Import it back to the club.
+  5. Delete the old playlist
+
+If you did everything correctly, your new playlist should now have a custom image!
+
+## Acknowledgements
+
+  - Special thanks to Adventures in Odyssey for their platform.
+  - Inspired by the need for easy playlist management among club members.
