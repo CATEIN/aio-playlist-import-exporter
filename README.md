@@ -1,4 +1,4 @@
-![Extension logo](https://github.com/CATEIN/aio-playlist-import-exporter/blob/main/AiO%20Playlist%20Export%20%26%20Inport/icons/icon128.png)
+![Extension logo](https://github.com/CATEIN/aio-playlist-import-exporter/blob/main/icons/icon128.png)
 
 # AiO Playlist Import & Exporter
 
