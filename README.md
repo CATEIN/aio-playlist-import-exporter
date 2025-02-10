@@ -4,6 +4,12 @@
 
 A Chrome web extension for [Adventures in Odyssey](https://app.adventuresinodyssey.com) that allows club members to easily export and import playlists. With this extension, you can export your playlist data in a custom `.aiopl` file format and import it on another account or share it with friends.
 
+## Screenshots
+
+![playlist image](https://github.com/CATEIN/aio-playlist-import-exporter/blob/main/icons/images/playlist.png)
+
+![extension image](https://github.com/CATEIN/aio-playlist-import-exporter/blob/main/icons/images/playlist.png)
+
 ## Features
 
 - **Export:**  
