@@ -14,19 +14,19 @@ A Chrome web extension for [Adventures in Odyssey](https://app.adventuresinodyss
 - **Export KYDS Radio:**  
   Generates and copies to the clipboard the episode links from the playlist’s `contentList`, formatted for my KYDS Radio discord bot.
 
-  - **Import Playlists:**  
+- **Import:**  
 Imports playlists by selecting a file (`.aiopl`, `.json`, or `.txt`). The extension will remove any embedded viewer IDs so that the playlist is imported under the current account.
 
 ## How it works:
 
-A background script monitors outgoing requests on the main frame (i.e., the full page load) of the Adventures in Odyssey website. It captures the API token and viewer ID from the request headers (specifically the Authorization and x-viewer-id headers) and stores them in local storage. *The token and viewer-id are not shared or sent anywhere other than https://app.adventuresinodyssey.com/ and https://fotf.my.site.com/*
+A background script monitors outgoing requests on the main frame (i.e., the full page load) of the Adventures in Odyssey website. It captures the API token and viewer ID from the request headers (specifically the `Authorization` and `x-viewer-id` headers) and stores them in local storage. *The token and viewer-id are not shared or sent anywhere other than https://app.adventuresinodyssey.com/ and https://fotf.my.site.com/*
 
 When you click the Export button, the extension checks the active tab’s URL for a playlist identifier (e.g., https://app.adventuresinodyssey.com/playlists/<playlistId>).
 The extension uses the stored API token and viewer ID to send a GET request to the API endpoint. Once the full playlist data is received, it “cleans up” the response by:
 
-  - Setting the top-level metadata to an empty object.
-  - Inserting an empty errors array.
-  - Including in contentGroupings only the keys: name, imageURL and contentList
+  - Setting the top-level `metadata` to an empty object.
+  - Inserting an empty `errors` array.
+  - Including in `contentGroupings` only the keys: `name`, `imageURL` and `contentList`
 
 The cleaned JSON is then converted to a file with the extension .aiopl (named after the playlist) and automatically downloaded.
 
