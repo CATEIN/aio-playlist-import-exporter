@@ -32,9 +32,11 @@ document.addEventListener('DOMContentLoaded', () => {
         showToast("Invalid JSON in file: " + error.message, 4000);
         return;
       }
-      chrome.storage.local.get(['apiToken', 'viewerId'], (result) => {
+      chrome.storage.local.get(['apiToken', 'viewerId', 'xPin'], (result) => {
         const token = result.apiToken;
         const viewerId = result.viewerId;
+        // Convert xPin to string if defined; if not, use an empty string.
+        const xPin = (result.xPin !== undefined && result.xPin !== null) ? String(result.xPin) : "";
         if (!token) {
           showToast("No API token available.");
           return;
@@ -52,6 +54,7 @@ document.addEventListener('DOMContentLoaded', () => {
             'Accept': 'application/json',
             'Content-Type': 'application/json',
             'x-viewer-id': viewerId,
+            'x-pin': xPin,
             'x-experience-name': "Adventures In Odyssey"
           },
           body: JSON.stringify(payload)
@@ -84,13 +87,14 @@ document.addEventListener('DOMContentLoaded', () => {
   // EXPORT FUNCTIONALITY (File Download):
   // When the "Export" button is clicked, determine the current playlist ID from the active tab’s URL,
   // fetch the full playlist data, "clean it up" (set metadata to {} and errors to [],
-  // and in contentGroupings only include name, imageURL, contentList, content_for_parents),
+  // and in contentGroupings only include name, imageURL, contentList, and content_for_parents),
   // then trigger a file download with the filename "<playlist name>.aiopl".
   // -------------------------------
   document.getElementById('exportBtn').addEventListener('click', () => {
-    chrome.storage.local.get(['apiToken', 'viewerId'], (result) => {
+    chrome.storage.local.get(['apiToken', 'viewerId', 'xPin'], (result) => {
       const token = result.apiToken;
       const viewerId = result.viewerId;
+      const xPin = (result.xPin !== undefined && result.xPin !== null) ? String(result.xPin) : "";
       if (!token) {
         showToast("No API token available.");
         return;
@@ -122,6 +126,7 @@ document.addEventListener('DOMContentLoaded', () => {
             'Authorization': token,
             'Accept': 'application/json',
             'x-viewer-id': viewerId,
+            'x-pin': xPin,
             'x-experience-name': "Adventures In Odyssey"
           }
         })
@@ -156,7 +161,6 @@ document.addEventListener('DOMContentLoaded', () => {
               ]
             };
             const cleanedJSON = JSON.stringify(cleanedData, null, 2);
-            // Create a Blob from the JSON.
             const blob = new Blob([cleanedJSON], { type: "application/json" });
             const urlObject = URL.createObjectURL(blob);
             const a = document.createElement("a");
@@ -186,9 +190,10 @@ document.addEventListener('DOMContentLoaded', () => {
   // and copy the resulting text to the clipboard.
   // -------------------------------
   document.getElementById('exportKYDSBtn').addEventListener('click', () => {
-    chrome.storage.local.get(['apiToken', 'viewerId'], (result) => {
+    chrome.storage.local.get(['apiToken', 'viewerId', 'xPin'], (result) => {
       const token = result.apiToken;
       const viewerId = result.viewerId;
+      const xPin = (result.xPin !== undefined && result.xPin !== null) ? String(result.xPin) : "";
       if (!token) {
         showToast("No API token available.");
         return;
@@ -218,6 +223,7 @@ document.addEventListener('DOMContentLoaded', () => {
             'Authorization': token,
             'Accept': 'application/json',
             'x-viewer-id': viewerId,
+            'x-pin': xPin,
             'x-experience-name': "Adventures In Odyssey"
           }
         })
@@ -234,7 +240,7 @@ document.addEventListener('DOMContentLoaded', () => {
             } else {
               playlistData = data;
             }
-            // Build the string of links.
+            // Build the string of KYDS Radio links.
             let links = "";
             if (playlistData.contentList && playlistData.contentList.length > 0) {
               links = playlistData.contentList.map(content => {
@@ -247,12 +253,12 @@ document.addEventListener('DOMContentLoaded', () => {
               })
               .catch(err => {
                 console.error("Failed to copy KYDS Radio links:", err);
-                showToast("Failed to copy KYDS Radio links.");
+                showToast("Failed to copy KYDS Radio links.", 4000);
               });
           })
           .catch(error => {
             console.error("Error fetching playlist info:", error);
-            showToast("Error fetching playlist info.");
+            showToast("Error fetching playlist info.", 4000);
           });
       });
     });

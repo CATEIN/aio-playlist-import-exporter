@@ -3,7 +3,7 @@
   "name": "AiO Playlist Import/Export",
   "description": "A web extension for importing and exporting AiO playlists.",
   "author": "CATEIN",
-  "version": "1.0",
+  "version": "1.1",
   "icons": {
     "48": "icons/icon48.png",
     "128": "icons/icon128.png"
