@@ -6,11 +6,14 @@ A Chrome web extension for [Adventures in Odyssey](https://app.adventuresinodyss
 
 ## Screenshots
 
-![playlist image](https://github.com/CATEIN/aio-playlist-import-exporter/blob/main/icons/images/playlist.png)
+![playlist image](https://github.com/CATEIN/aio-playlist-import-exporter/blob/main/images/playlist.png)
 
-![extension image](https://github.com/CATEIN/aio-playlist-import-exporter/blob/main/icons/images/extension.png)
+![extension image](https://github.com/CATEIN/aio-playlist-import-exporter/blob/main/images/extension.png)
 
 ## Features
+
+- **Import:**  
+  Imports playlists by selecting a file (`.aiopl`, `.json`, or `.txt`). The extension will remove any embedded viewer IDs so that the playlist is imported under the current account.
 
 - **Export:**  
   Exports your current playlist data into a `.aiopl` file, containing the following information:
@@ -19,15 +22,19 @@ A Chrome web extension for [Adventures in Odyssey](https://app.adventuresinodyss
   - Image for playlist (if given)
   - Episodes in playlist
 
-- **Export KYDS Radio:**  
-  Generates and copies to the clipboard the episode links from the playlist’s `contentList`, formatted for my KYDS Radio discord bot.
+- **Import List:**  
+  Imports given episode links and puts them in a new playlist. You can specify the playlists name and image with `name: "..."` and `imageURL: "..."`
 
-- **Import:**  
-Imports playlists by selecting a file (`.aiopl`, `.json`, or `.txt`). The extension will remove any embedded viewer IDs so that the playlist is imported under the current account.
+- **Export List:**  
+  Generates and copies to the clipboard the episode links from the playlist’s `contentList`, along with the playlists `name` and `imageURL` if the toggle is enabled.
 
 ## How it works:
 
 A background script monitors outgoing requests on the main frame (i.e., the full page load) of the Adventures in Odyssey website. It captures the API token and viewer ID from the request headers (specifically the `Authorization`, `x-viewer-id` and `x-pin` headers) and stores them in local storage. *these headers are not shared or sent anywhere other than https://app.adventuresinodyssey.com/ and https://fotf.my.site.com/*
+
+By clicking the Import button, the extension lets you select a file (with a `.aiopl`, `.json`, or `.txt` extension) via a file input.
+The selected file is read and parsed as JSON.
+Finally, a POST request is made to the API using the current user’s credentials (from the stored token, viewer ID and PIN), and the playlist is imported.
 
 When you click the Export button, the extension checks the active tab’s URL for a playlist identifier (e.g., https://app.adventuresinodyssey.com/playlists/<playlistId>).
 The extension uses the stored API token and viewer ID to send a GET request to the API endpoint. Once the full playlist data is received, it “cleans up” the response by:
@@ -38,18 +45,20 @@ The extension uses the stored API token and viewer ID to send a GET request to t
 
 The cleaned JSON is then converted to a file with the extension .aiopl (named after the playlist) and automatically downloaded.
 
-By clicking the Export KYDS Radio button, the extension again fetches the full playlist data. It then extracts each item’s id from the playlist’s contentList, prepends it with
+By clicking the Import List button, the extension first reads the data that has been pasted into the text box. The episode link are then cleaned to have only the `id`
+and then parsed as JSON. If the user included `name: "..."` and or `imageURL: "..."` in the list, it sets the playlist name and image with the provided data.
+
+By clicking the Export List button, the extension again fetches the full playlist data. It then extracts each item’s id from the playlist’s contentList, prepends it with
 https://app.adventuresinodyssey.com/content/,
 and concatenates these URLs (separated by spaces).
 The resulting string of links is copied directly to your clipboard, ready to be sent to the bot.
 
-By clicking the Import button, the extension lets you select a file (with a `.aiopl`, `.json`, or `.txt` extension) via a file input.
-The selected file is read and parsed as JSON.
-Finally, a POST request is made to the API using the current user’s credentials (from the stored token, viewer ID and PIN), and the playlist is imported.
+
 
 ## Setting a custom image on your playlist
 
-  If you want your playlist to have a custom image:
+  If you want your playlist to have a custom image, the easiest way is include the link in the list before importing.
+  But you can also just edit the `.aiopl` file:
 
   1. Export the playlist you wish to modify
   2. Open the playlist file with a text editor
