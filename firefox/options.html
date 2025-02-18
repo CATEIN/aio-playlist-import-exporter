@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>AiO Playlist Import Options</title>
+    <style>
+      body {
+        min-width: 400px;
+        background-color: #143776;
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 20px;
+        text-align: center;
+        color: #fff;
+      }
+      h1 {
+        color: #FED817;
+        font-size: 24px;
+        margin-bottom: 20px;
+      }
+      p {
+        font-size: 16px;
+      }
+      input[type="file"] {
+        margin: 20px auto;
+        display: block;
+        padding: 10px;
+        border-radius: 10px;
+      }
+      /* Toast notification styling */
+      #toast {
+        position: fixed;
+        bottom: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: rgba(0, 0, 0, 0.7);
+        color: #fff;
+        padding: 10px 20px;
+        border-radius: 5px;
+        font-size: 14px;
+        opacity: 0;
+        transition: opacity 0.5s ease;
+        z-index: 1000;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Import Playlist File</h1>
+    <p>Select a file to import (.aiopl, .json, .txt):</p>
+    <input type="file" id="importFile" accept=".aiopl,.json,.txt">
+    <div id="toast"></div>
+    <!-- Load external script file -->
+    <script src="options.js"></script>
+  </body>
+</html>

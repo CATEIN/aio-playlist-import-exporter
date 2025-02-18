@@ -29,42 +29,54 @@
         cursor: pointer;
         transition: background-color 0.3s ease;
       }
+      .button-small {
+        padding: 8px 16px;
+        font-size: 14px;
+      }
       .button:hover {
         background-color: #147BAE;
       }
-      /* Container for displaying the exported playlist item (for download) */
-      #playlistContainer {
+      /* Row for grouping buttons horizontally */
+      .button-row {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 10px;
+      }
+      /* Style for the toggle label */
+      .toggle-label {
+        font-size: 10px;
+        margin-left: 10px;
+        display: flex;
+        align-items: center;
+        color: #fff;
+      }
+      .toggle-label input {
+        margin-right: 5px;
+      }
+      /* Import File Section styling */
+      /* Hide the file input (it will be triggered by the Import button) */
+      #importFile {
+        display: none;
+      }
+      /* Single input field for Import List data */
+      #importListSection {
         margin-top: 20px;
-        text-align: left;
+        text-align: center;
       }
-      .playlistItem {
-        background: #178CCA;
-        margin: 10px 0;
-        padding: 10px;
-        border-radius: 10px;
-        cursor: pointer;
-        transition: background-color 0.3s ease;
-      }
-      .playlistItem:hover {
-        background: #147BAE;
-      }
-      /* Import file input styling */
-      #importSection {
-        margin-top: 20px;
-        text-align: left;
-      }
-      #importSection label {
+      #importListSection label {
         display: block;
         margin-bottom: 5px;
         font-weight: bold;
       }
-      #importFile {
-        display: block;
-        margin: 0 auto;
+      #importListInput {
+        margin-top: 5px;
         width: 100%;
-        padding: 10px;
+        max-width: 300px;
+        padding: 8px;
         border-radius: 10px;
-        color: #ccc;
+        border: 1px solid #ccc;
+        box-sizing: border-box;
       }
       /* Toast notification styling */
       #toast {
@@ -85,14 +97,32 @@
   </head>
   <body>
     <h1>AiO Playlist Import/Export</h1>
-    <button class="button" id="importBtn">Import</button>
-    <button class="button" id="exportBtn">Export</button>
-    <button class="button" id="exportKYDSBtn">Export KYDS Radio</button>
-    <div id="playlistContainer"></div>
-    <div id="importSection">
-      <label for="importFile">Select file to import (.aiopl, .json, .txt):</label>
-      <input type="file" id="importFile" accept=".aiopl,.json,.txt" />
+
+    <!-- First row: Import and Export -->
+    <div class="button-row">
+      <button class="button" id="importBtn">Import</button>
+      <button class="button" id="exportBtn">Export</button>
     </div>
+
+    <!-- Import File Section (hidden file input, but not visible) -->
+    <input type="file" id="importFile" accept=".aiopl,.json,.txt" />
+
+    <!-- Second row: Import List and Export List with toggle -->
+    <div class="button-row">
+      <button class="button button-small" id="importListBtn">Import List</button>
+      <button class="button button-small" id="exportKYDSBtn">Export List</button>
+      <label class="toggle-label">
+        <input type="checkbox" id="includeDetailsToggle">
+        Include name and image
+      </label>
+    </div>
+
+    <!-- Import List Section (single text input) -->
+    <div id="importListSection">
+      <input type="text" id="importListInput" placeholder='Paste list data here'>
+    </div>
+
+    <div id="playlistContainer"></div>
     <div id="toast"></div>
     <script src="popup.js"></script>
   </body>
