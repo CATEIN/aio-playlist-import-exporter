@@ -1,4 +1,6 @@
-![Extension logo](https://github.com/CATEIN/aio-playlist-import-exporter/blob/main/icons/icon128.png)
+[![Get the add-on](https://img.shields.io/amo/v/aio-playlist-import-export.svg?style=flat-square)](https://addons.mozilla.org/firefox/addon/aio-playlist-import-export/) 
+[![Get it on GitHub](https://img.shields.io/badge/Get%20it%20on-GitHub-black?style=for-the-badge&logo=github)](https://github.com/CATEIN/aio-playlist-import-exporter/releases)
+
 
 # AiO Playlist Import & Exporter
 
