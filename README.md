@@ -65,7 +65,7 @@ The resulting string of links is copied directly to your clipboard, ready to be 
   1. Export the playlist you wish to modify
   2. Open the playlist file with a text editor
   3. Locate `"imageURL": "",` and put your image URL here `"imageURL": "https://catein.xyz/images/whit.png",`
-     - Note that the image url needs the header `Access-Control-Allow-Origin:`, so most image urls will not work. Images from the club and https://adventuresinodyssey.fans/images/ have these headers
+     - Note that the image url needs the header `Access-Control-Allow-Origin:`, so most image urls will not work. Images from the [club](https://app.adventuresinodyssey.com/), https://tenor.com/ and https://adventuresinodyssey.fans/images/ have these headers
   4. Save the file and Import it back to the club.
   5. Delete the old playlist
 
